@@ -15,13 +15,16 @@ function updateGrid(gridSize){
 
   // remove old squares from grid
   let borders = squareBordersUsed(); // remember if borders were active
+  let tweaks = grid.firstChild ? grid.firstChild.classList : false; // save tweaks(opacity, random color)
   while(grid.firstChild){
     grid.removeChild(grid.firstChild);
   }
 
   // add new squares to grid
   for(let i = 0; i < squareNumber; i++){
-    grid.append(square.cloneNode());
+    let newSquare = square.cloneNode()
+    if(tweaks) newSquare.classList = tweaks; // inherit tweaks if they exist
+    grid.append(newSquare);
   }
 
   // add borders to new squares if they were used with old squares

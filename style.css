@@ -1,0 +1,24 @@
+* {
+  padding: 0px;
+  margin: 0px; 
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  background-color: red;
+  width: 650px;
+  height: 650px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square { 
+  background-color: green;
+}

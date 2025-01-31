@@ -5,7 +5,8 @@ function updateGrid(gridSize){
 
   // find number and size of new squares
   const squareNumber = gridSize ** 2;
-  const squareSize = Math.sqrt((grid.clientHeight * grid.clientWidth) / squareNumber);
+  // const squareSize = Math.sqrt((grid.clientHeight * grid.clientWidth) / squareNumber);
+  const squareSize = grid.clientHeight / gridSize; // simplified version of above.
 
   // apply styles/classes to new squares
   square.style.width = `${squareSize}px`;

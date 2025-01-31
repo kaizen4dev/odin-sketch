@@ -53,3 +53,15 @@ function toggleSquareBorders(){
     }
   }
 }
+
+// listen for events
+function listen(){
+  addEventListener('mouseover', (event) => {
+    let target = event.target
+    switch(target.className){
+      case "square":
+        target.style.backgroundColor = "black";
+        break;
+    }
+  })
+}

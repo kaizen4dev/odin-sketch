@@ -13,15 +13,10 @@ body {
 }
 
 .grid {
-  background-color: red;
   width: 650px;
   height: 650px;
   display: flex;
   flex-wrap: wrap;
-}
-
-.square { 
-  background-color: green;
 }
 
 .buttons {

@@ -1,6 +1,6 @@
 function updateGrid(gridSize){
   // don't update grid if whole number isn't passed
-  if(!gridSize || !Number.isInteger(gridSize)) return alert("Canceled.");
+  if(!gridSize || !Number.isInteger(Number(gridSize))) return alert("Canceled.");
 
   // select/create grid and single square
   const grid = document.querySelector(".grid");

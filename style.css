@@ -11,6 +11,7 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: #eee;
+  gap: 15px;
 }
 
 .grid {
@@ -19,8 +20,4 @@ body {
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
-}
-
-.buttons {
-  padding: 10px;
 }

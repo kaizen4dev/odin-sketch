@@ -23,3 +23,7 @@ body {
 .square { 
   background-color: green;
 }
+
+.buttons {
+  padding: 10px;
+}

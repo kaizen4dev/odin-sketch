@@ -54,6 +54,14 @@ function toggleSquareBorders(){
   }
 }
 
+// toggle class for all squares
+function toggleSquareClass(classToToggle){
+  const grid = document.querySelector(".grid");
+  for(const square of grid.children){
+    square.classList.toggle(classToToggle);
+  }
+}
+
 // listen for events
 function listen(){
   addEventListener('mouseover', (event) => {

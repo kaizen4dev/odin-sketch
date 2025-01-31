@@ -62,6 +62,13 @@ function toggleSquareClass(classToToggle){
   }
 }
 
+function getRandomRGB(){
+  function randomNumber(){
+    return Math.floor(Math.random() * 226);
+  } 
+  return `rgb(${randomNumber()}, ${randomNumber()}, ${randomNumber()})`
+}
+
 // listen for events
 function listen(){
   addEventListener('mouseover', (event) => {
@@ -72,6 +79,18 @@ function listen(){
         break;
       case "square opacity":
         target.style.backgroundColor = "black";
+        target.style.opacity = `${Number(target.style.opacity) + 0.1}`
+        break;
+      case "square random":
+        target.style.backgroundColor = getRandomRGB();
+        break;
+      // becase of pressing order there is two cases for random color + opacity
+      case "square random opacity":
+        target.style.backgroundColor = getRandomRGB();
+        target.style.opacity = `${Number(target.style.opacity) + 0.1}`
+        break;
+      case "square opacity random":
+        target.style.backgroundColor = getRandomRGB();
         target.style.opacity = `${Number(target.style.opacity) + 0.1}`
         break;
     }
@@ -88,6 +107,10 @@ function listen(){
         break;
       case "opacity":
         toggleSquareClass("opacity");
+        target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
+        break;
+      case "random-color":
+        toggleSquareClass("random");
         target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
         break;
     }

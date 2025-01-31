@@ -70,6 +70,10 @@ function listen(){
       case "square":
         target.style.backgroundColor = "black";
         break;
+      case "square opacity":
+        target.style.backgroundColor = "black";
+        target.style.opacity = `${Number(target.style.opacity) + 0.1}`
+        break;
     }
   })
 
@@ -81,6 +85,10 @@ function listen(){
         break;
       case "toggle-square-borders":
         toggleSquareBorders();
+        break;
+      case "opacity":
+        toggleSquareClass("opacity");
+        target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
         break;
     }
   })

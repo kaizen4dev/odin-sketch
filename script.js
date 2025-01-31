@@ -44,11 +44,11 @@ function toggleSquareBorders(){
   const grid = document.querySelector(".grid");
 
   if(squareBordersUsed()){
-    for(square of grid.children){
+    for(const square of grid.children){
       square.style.border = "none";
     }
   } else {
-    for(square of grid.children){
+    for(const square of grid.children){
       square.style.border = "thin solid black";
     }
   }

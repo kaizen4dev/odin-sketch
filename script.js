@@ -57,10 +57,22 @@ function toggleSquareBorders(){
 // listen for events
 function listen(){
   addEventListener('mouseover', (event) => {
-    let target = event.target
+    let target = event.target;
     switch(target.className){
       case "square":
         target.style.backgroundColor = "black";
+        break;
+    }
+  })
+
+  addEventListener('click', (event) => {
+    let target = event.target;
+    switch(target.className){
+      case "new-grid":
+        updateGrid(prompt('Size of new grid'));
+        break;
+      case "toggle-square-borders":
+        toggleSquareBorders();
         break;
     }
   })

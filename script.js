@@ -8,7 +8,7 @@ let tweaks = {
         square.style.border = square.style.border == "" ? "thin solid black" : "";
       }
       if(changeState) this.state = !this.state;
-      return;
+      return this.state;
     }
   },
   randomColor: {

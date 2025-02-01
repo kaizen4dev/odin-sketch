@@ -1,6 +1,15 @@
 // tweaks and their (defalult) values
 let tweaks = {
-  borders: true,
+  borders: {
+    state: true,
+    toggle: function(changeState) {
+      const grid = document.querySelector(".grid");
+      for(const square of grid.children){
+        square.style.border = square.style.border == "" ? "thin solid black" : "";
+      }
+      if(changeState) this.state = !this.state;
+    }
+  },
   randomColor: false, 
   opacity: false
 };
@@ -35,16 +44,7 @@ function updateGrid(gridSize){
   }
 
   // add borders to new squares if they turned on
-  if(tweaks.borders) toggleSquareBorders();
-}
-
-// turn borders on or off
-function toggleSquareBorders(switchTweaks){
-  const grid = document.querySelector(".grid");
-  for(const square of grid.children){
-    square.style.border = square.style.border == "" ? "thin solid black" : "";
-  }
-  if(switchTweaks) tweaks.borders = !tweaks.borders;
+  if(tweaks.borders.state) tweaks.borders.toggle();
 }
 
 function getRandomRGB(){
@@ -73,7 +73,7 @@ function listen(){
         updateGrid(prompt('Size of new grid'));
         break;
       case "toggle-square-borders":
-        toggleSquareBorders(true);
+        tweaks.borders.toggle(true);
         break;
       case "opacity":
         tweaks.opacity = !tweaks.opacity;

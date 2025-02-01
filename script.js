@@ -8,10 +8,21 @@ let tweaks = {
         square.style.border = square.style.border == "" ? "thin solid black" : "";
       }
       if(changeState) this.state = !this.state;
+      return;
     }
   },
-  randomColor: false, 
-  opacity: false
+  randomColor: {
+    state: false,
+    toggle: function(){
+      return this.state = !this.state;
+    }
+  }, 
+  opacity: {
+    state: false,
+    toggle: function(){
+      return this.state = !this.state;
+    }
+  }
 };
 
 // create new grid
@@ -60,8 +71,8 @@ function listen(){
     let target = event.target;
     switch(target.className){
       case "square":
-        target.style.backgroundColor = tweaks.randomColor ? getRandomRGB() : "black";
-        target.style.opacity = tweaks.opacity ? `${Number(target.style.opacity) + 0.1}` : null;
+        target.style.backgroundColor = tweaks.randomColor.state ? getRandomRGB() : "black";
+        target.style.opacity = tweaks.opacity.state ? `${Number(target.style.opacity) + 0.1}` : null;
         break;
     }
   })
@@ -76,11 +87,11 @@ function listen(){
         tweaks.borders.toggle(true);
         break;
       case "opacity":
-        tweaks.opacity = !tweaks.opacity;
+        tweaks.opacity.toggle();
         target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
         break;
       case "random-color":
-        tweaks.randomColor = !tweaks.randomColor;
+        tweaks.randomColor.toggle()
         target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
         break;
     }

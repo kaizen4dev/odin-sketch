@@ -1,3 +1,11 @@
+// tweaks and their (defalult) values
+let tweaks = {
+  borders: true,
+  randomColor: false, 
+  opacity: false
+};
+
+// create new grid
 function updateGrid(gridSize){
   // don't update grid if whole number isn't passed
   if(!gridSize || !Number.isInteger(Number(gridSize))) return alert("Canceled.");
@@ -17,55 +25,26 @@ function updateGrid(gridSize){
   square.classList.add("square");
 
   // remove old squares from grid
-  let borders = squareBordersUsed(); // remember if borders were active
-  let tweaks = grid.firstChild ? grid.firstChild.classList : false; // save tweaks(opacity, random color)
   while(grid.firstChild){
     grid.removeChild(grid.firstChild);
   }
 
   // add new squares to grid
   for(let i = 0; i < squareNumber; i++){
-    let newSquare = square.cloneNode()
-    if(tweaks) newSquare.classList = tweaks; // inherit tweaks if they exist
-    grid.append(newSquare);
+    grid.append(square.cloneNode());
   }
 
-  // add borders to new squares if they were used with old squares
-  if(borders == true) toggleSquareBorders();
-}
-
-// check if borders are on or off
-function squareBordersUsed(){
-  const grid = document.querySelector(".grid");
-
-  // return false if grid is empty
-  if(!grid.firstElementChild) return false;
-
-  // return true of false, depending on square borders
-  return grid.firstChild.style.border == "thin solid black" ? true : false;
+  // add borders to new squares if they turned on
+  if(tweaks.borders) toggleSquareBorders();
 }
 
 // turn borders on or off
-function toggleSquareBorders(){
-  const grid = document.querySelector(".grid");
-
-  if(squareBordersUsed()){
-    for(const square of grid.children){
-      square.style.border = "none";
-    }
-  } else {
-    for(const square of grid.children){
-      square.style.border = "thin solid black";
-    }
-  }
-}
-
-// toggle class for all squares
-function toggleSquareClass(classToToggle){
+function toggleSquareBorders(switchTweaks){
   const grid = document.querySelector(".grid");
   for(const square of grid.children){
-    square.classList.toggle(classToToggle);
+    square.style.border = square.style.border == "" ? "thin solid black" : "";
   }
+  if(switchTweaks) tweaks.borders = !tweaks.borders;
 }
 
 function getRandomRGB(){
@@ -81,23 +60,8 @@ function listen(){
     let target = event.target;
     switch(target.className){
       case "square":
-        target.style.backgroundColor = "black";
-        break;
-      case "square opacity":
-        target.style.backgroundColor = "black";
-        target.style.opacity = `${Number(target.style.opacity) + 0.1}`
-        break;
-      case "square random":
-        target.style.backgroundColor = getRandomRGB();
-        break;
-      // becase of pressing order there is two cases for random color + opacity
-      case "square random opacity":
-        target.style.backgroundColor = getRandomRGB();
-        target.style.opacity = `${Number(target.style.opacity) + 0.1}`
-        break;
-      case "square opacity random":
-        target.style.backgroundColor = getRandomRGB();
-        target.style.opacity = `${Number(target.style.opacity) + 0.1}`
+        target.style.backgroundColor = tweaks.randomColor ? getRandomRGB() : "black";
+        target.style.opacity = tweaks.opacity ? `${Number(target.style.opacity) + 0.1}` : null;
         break;
     }
   })
@@ -109,14 +73,14 @@ function listen(){
         updateGrid(prompt('Size of new grid'));
         break;
       case "toggle-square-borders":
-        toggleSquareBorders();
+        toggleSquareBorders(true);
         break;
       case "opacity":
-        toggleSquareClass("opacity");
+        tweaks.opacity = !tweaks.opacity;
         target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
         break;
       case "random-color":
-        toggleSquareClass("random");
+        tweaks.randomColor = !tweaks.randomColor;
         target.style.backgroundColor = target.style.backgroundColor == "lime" ? "" : "lime";
         break;
     }

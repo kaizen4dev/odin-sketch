@@ -1,4 +1,4 @@
-// tweaks and their (defalult) values
+// tweaks and their (default) values
 let tweaks = {
   borders: {
     state: true,

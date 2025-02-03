@@ -60,7 +60,7 @@ function updateGrid(gridSize){
 
 function getRandomRGB(){
   function randomNumber(){
-    return Math.floor(Math.random() * 226);
+    return Math.floor(Math.random() * 256);
   } 
   return `rgb(${randomNumber()}, ${randomNumber()}, ${randomNumber()})`
 }
